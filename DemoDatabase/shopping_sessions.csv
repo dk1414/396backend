@@ -1,0 +1,2 @@
+session_id,user_id,thread_id,intent,created_at,updated_at
+1,2,fakethread_id,hats,2025-02-05T21:04:14.693358,2025-02-05T21:04:14.693358
