@@ -1,2 +1,3 @@
 session_id,user_id,thread_id,intent,created_at,updated_at
 1,2,fakethread_id,hats,2025-02-05T21:04:14.693358,2025-02-05T21:04:14.693358
+2,2,thread_K8rKbuvUED0hIVNuUZCIdUJR,shopping for new laptop,2025-02-06T22:27:57.112606,2025-02-06T22:27:57.112606

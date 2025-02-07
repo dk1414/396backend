@@ -12,6 +12,7 @@ def menu():
     print("4. Get User Preferences")
     print("5. Create Shopping Session")
     print("6. Get Shopping Session")
+    print("7. Add Chat Message to Session")
     print("0. Exit")
 
 def create_user_flow():
@@ -35,7 +36,6 @@ def create_user_flow():
 def get_user_flow():
     print("\n--- Get User ---")
     user_id = input("Enter user_id: ")
-
     resp = requests.get(f"{BASE_URL}/users/{user_id}")
     if resp.status_code == 200:
         print("User found:")
@@ -72,7 +72,6 @@ def update_user_preferences_flow():
 def get_user_preferences_flow():
     print("\n--- Get User Preferences ---")
     user_id = input("Enter user_id: ")
-
     resp = requests.get(f"{BASE_URL}/users/{user_id}/preferences")
     if resp.status_code == 200:
         print("User preferences:")
@@ -84,12 +83,8 @@ def create_shopping_session_flow():
     print("\n--- Create Shopping Session ---")
     user_id = input("Enter user_id: ")
     intent = input("What is the user shopping for? (intent): ")
-    thread_id = input("Optionally, enter an OpenAI thread_id (or leave blank): ")
 
     data = {"intent": intent}
-    if thread_id:
-        data["thread_id"] = thread_id
-
     resp = requests.post(f"{BASE_URL}/users/{user_id}/shopping_sessions", json=data)
     if resp.status_code == 201:
         print("Shopping session created.")
@@ -100,10 +95,22 @@ def create_shopping_session_flow():
 def get_shopping_session_flow():
     print("\n--- Get Shopping Session ---")
     session_id = input("Enter session_id: ")
-
     resp = requests.get(f"{BASE_URL}/shopping_sessions/{session_id}")
     if resp.status_code == 200:
         print("Shopping session:")
+        print(resp.json())
+    else:
+        print("Error:", resp.status_code, resp.text)
+
+def add_chat_message_flow():
+    print("\n--- Add Chat Message to Session ---")
+    session_id = input("Enter session_id: ")
+    message = input("Enter your chat message: ")
+
+    data = {"message": message}
+    resp = requests.post(f"{BASE_URL}/shopping_sessions/{session_id}/messages", json=data)
+    if resp.status_code == 200:
+        print("Chat updated. Latest messages in thread:")
         print(resp.json())
     else:
         print("Error:", resp.status_code, resp.text)
@@ -124,6 +131,8 @@ def main():
             create_shopping_session_flow()
         elif choice == "6":
             get_shopping_session_flow()
+        elif choice == "7":
+            add_chat_message_flow()
         elif choice == "0":
             print("Exiting...")
             sys.exit(0)
@@ -132,3 +141,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
