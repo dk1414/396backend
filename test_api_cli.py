@@ -1,6 +1,7 @@
 # test_api_cli.py
 import requests
 import sys
+import os
 
 BASE_URL = "http://127.0.0.1:5000/api"
 
@@ -13,6 +14,9 @@ def menu():
     print("5. Create Shopping Session")
     print("6. Get Shopping Session")
     print("7. Add Chat Message to Session")
+    print("8. Generate Product Description")
+    print("9. Login")
+    print("10. Get All Sessions for User")
     print("0. Exit")
 
 def create_user_flow():
@@ -115,6 +119,53 @@ def add_chat_message_flow():
     else:
         print("Error:", resp.status_code, resp.text)
 
+def generate_product_description_flow():
+    print("\n--- Generate Product Description ---")
+    session_id = input("Enter session_id: ")
+    file_path = input("Enter the path to the product page text file: ")
+
+    if not os.path.exists(file_path):
+        print("File not found.")
+        return
+
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            product_page = f.read()
+    except Exception as e:
+        print("Error reading file:", e)
+        return
+
+    data = {"product_page": product_page}
+    resp = requests.post(f"{BASE_URL}/shopping_sessions/{session_id}/product_description", json=data)
+    if resp.status_code == 200:
+        print("Product description generated:")
+        print(resp.json())
+    else:
+        print("Error:", resp.status_code, resp.text)
+
+def login_flow():
+    print("\n--- Login ---")
+    email = input("Enter email: ")
+    password = input("Enter password: ")
+
+    data = {"email": email, "password": password}
+    resp = requests.post(f"{BASE_URL}/login", json=data)
+    if resp.status_code == 200:
+        print("Login successful!")
+        print("Response:", resp.json())
+    else:
+        print("Error:", resp.status_code, resp.text)
+
+def get_user_sessions_flow():
+    print("\n--- Get All Sessions for User ---")
+    user_id = input("Enter user_id: ")
+    resp = requests.get(f"{BASE_URL}/users/{user_id}/sessions")
+    if resp.status_code == 200:
+        print("User sessions:")
+        print(resp.json())
+    else:
+        print("Error:", resp.status_code, resp.text)
+
 def main():
     while True:
         menu()
@@ -133,6 +184,12 @@ def main():
             get_shopping_session_flow()
         elif choice == "7":
             add_chat_message_flow()
+        elif choice == "8":
+            generate_product_description_flow()
+        elif choice == "9":
+            login_flow()
+        elif choice == "10":
+            get_user_sessions_flow()
         elif choice == "0":
             print("Exiting...")
             sys.exit(0)
@@ -141,4 +198,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 

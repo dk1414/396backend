@@ -9,7 +9,6 @@ SESSIONS_CSV = os.path.join("DemoDatabase", "shopping_sessions.csv")
 # ------------------------------------------------------------------------------
 # 1. CSV READ/WRITE UTILITY FUNCTIONS
 # ------------------------------------------------------------------------------
-
 def load_csv(filepath, fieldnames=None):
     """
     Reads a CSV file and returns a list of dicts.
@@ -106,6 +105,18 @@ def get_user_by_id(user_id):
     users = load_users()
     for user in users:
         if user["user_id"] == user_id_str:
+            return user
+    return None
+
+def get_user_by_email(email):
+    """
+    Retrieve a user dict by email from users.csv.
+    Returns None if not found.
+    """
+    users = load_users()
+    for user in users:
+        # Assuming emails are stored consistently (case-sensitive or you can use lower())
+        if user["email"] == email:
             return user
     return None
 
@@ -269,4 +280,15 @@ def update_shopping_session(session_id, intent=None, thread_id=None):
     if updated_session:
         save_shopping_sessions(sessions)
     return updated_session
+
+def get_shopping_sessions_by_user_id(user_id):
+    """
+    Retrieve all shopping sessions associated with the given user_id.
+    Returns a list of session dictionaries.
+    """
+    user_id_str = str(user_id)
+    sessions = load_shopping_sessions()
+    user_sessions = [s for s in sessions if s["user_id"] == user_id_str]
+    return user_sessions
+
 
