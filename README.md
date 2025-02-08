@@ -362,7 +362,7 @@ Generates a personalized product description using the product description assis
 
 ```json
 {
-  "product_page": "Detailed product page information, including specifications, reviews, and images."
+  "product_page": "Detailed product page information, in string format."
 }
 ```
 
