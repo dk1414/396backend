@@ -3,3 +3,8 @@ preference_id,user_id,preference_key,preference_value
 2,1,color,Red
 3,2,brand,apple
 4,2,shoe,nike
+5,1,Age,27
+6,1,Gender,Male
+7,1,Occupation,"Master Student"
+8,1,Company/Institution,"Northwestern University"
+9,1,Self Intro,"I work in a lab and need a device to check for harmful radiation to stay safe while working, but I’m not familiar with geiger counters. I want a product with decent reviews, good price and the functionalities I need the most.I work in a lab and need a device to check for harmful radiation to stay safe while working, but I’m not familiar with geiger counters. I want a product with decent reviews, good price and the functionalities I need the most."
