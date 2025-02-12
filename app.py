@@ -1,5 +1,6 @@
 # app.py
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from scripts.csv_db import ( 
     create_user, get_user_by_id, get_user_by_email,
     update_user_preferences, get_preferences_by_user_id,
@@ -25,6 +26,7 @@ chat_agent = ChatAgent(openai_client, MAIN_ASSIST_ID)
 product_description_agent = ProductDescriptionAgent(openai_client, DESCRIPT_ASSIST_ID)
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/api/users', methods=['POST'])
 def api_create_user():
