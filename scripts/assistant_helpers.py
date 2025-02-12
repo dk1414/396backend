@@ -19,14 +19,6 @@ def create_chat_thread(client, user_preferences, intent):
     thread = client.beta.threads.create()
     thread_id = thread.id
 
-    # Step 1.5: Add the system prompt.
-    system_prompt = "You are an AI-powered browser extension and e-commerce shopping assistant, capable of generating personalized product descriptions, recommendations and comparisons based on scraped product pages. You will aggregate all information from the product page the user is viewing, and recommended product pages provided by the e-commerce platform, including reviews in these pages. Then you will reply with personalized product descriptions of the current product, recommendations and comparisons with recommended products, in sections, focusing on only the most relevant information based on the user demographics and usage."
-    msg0 = client.beta.threads.messages.create(
-        thread_id=thread_id,
-        role="user",
-        content=system_prompt
-    )
-
     # Step 2: Prepare the content for the first assistant message.
     preferences_info = "\n".join(
         f"{pref['preference_key']}: {pref['preference_value']}" for pref in user_preferences
