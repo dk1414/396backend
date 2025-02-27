@@ -252,14 +252,17 @@ class ComparisonAgent:
         product_pages = get_product_pages_by_session_id(session_id)
         products_text = ""
         for idx, record in enumerate(product_pages, start=1):
-            products_text += f"Product {idx}: {record['product_page']}\n\n"
-        
+            products_text += f"#Start: Product {idx} Description#\n: {record['product_page']}\n\n"
+            products_text += f"#End: Product {idx} Description#\n\n"
         # Compose the prompt.
         prompt = (
-            f"Pre-shopping conversation with User:\n{conversation_text}\n\n"
+            f"#Start: Pre-shopping conversation with User:\n{conversation_text}#\n\n"
+            "#End: Pre-shopping conversation with User\n\n"
             f"{products_text}"
-            "Create a comparison table for these products and output the markdown."
+            "Create a comparison table for these products."
         )
+
+        print(prompt)
         
         # Create a new thread for the comparison task.
         new_thread = self.client.beta.threads.create()
