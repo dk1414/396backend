@@ -259,7 +259,7 @@ class ComparisonAgent:
             f"#Start: Pre-shopping conversation with User:\n{conversation_text}#\n\n"
             "#End: Pre-shopping conversation with User\n\n"
             f"{products_text}"
-            "Create a comparison table for these products."
+            "Remove duplicates and pick at most 4 products that best match user needs to create a comparison table for them."
         )
 
         print(prompt)
