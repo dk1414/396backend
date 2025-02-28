@@ -23,18 +23,3 @@ preference_id,user_id,preference_key,preference_value
 22,3,Interests,"Digital Design, Travel Documentaries, Baking"
 23,3,Tech Savviness,High
 24,3,Shopping Needs,Needs a laptop for graphic design and video editing work
-25,2,Price Range,$200
-26,2,Purpose,Schoolwork
-27,2,Important Feature,At least 3 hours of battery life
-28,2,Preferred Operating System,Windows
-29,2,Brand,Apple
-30,2,Brand Preference,Apple
-31,2,Shoe Brand Preference,Nike
-32,2,Intent,Shopping for laptop
-33,2,Laptop Price Range,$200
-34,2,Laptop Purpose,Schoolwork
-35,2,Battery Life Requirement,At least 3 hours
-36,2,Shopping Intent,Looking for a laptop
-37,2,Price Range for Laptop,$200
-38,2,Primary Use for Laptop,Schoolwork
-39,2,Operating System Preference,Windows
