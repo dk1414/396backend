@@ -24,8 +24,7 @@ This API enables a personalized shopping experience by managing users, their pre
    - [Generate Product Description](#generate-product-description)  
    - [Generate Product Comparison](#generate-product-comparison)  
    - [End Shopping Session](#end-shopping-session)  
-4. [Testing the API](#testing-the-api)  
-5. [Additional Notes](#additional-notes)
+
 
 ---
 
